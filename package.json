@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-kafka-tut",
+  "version": "1.0.0",
+  "description": "A simple project showing how to use kafkajs to create a producer and consumer to write and read from a kafka topic",
+  "main": "index.js",
+  "scripts": {
+    "start:producer": "node ./producer/index.js",
+    "start:consumer": "node ./consumer/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FonNkwenti/kafkajs-producer-consumer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FonNkwenti/kafkajs-producer-consumer/issues"
+  },
+  "homepage": "https://github.com/FonNkwenti/kafkajs-producer-consumer#readme",
+  "dependencies": {
+    "avsc": "^5.7.4",
+    "node-rdkafka": "^2.13.0"
+  }
+}
