@@ -16,9 +16,26 @@ const stream = Kafka.Producer.createWriteStream(
   { topic: "test-topic" }
 );
 
+getRandomAnimal = () => {
+  const kind = ["CAT", "DOG"];
+  return kind[Math.floor(Math.random() * kind.length)];
+};
+
+getRandomNoise = (animal) => {
+  if (animal === "CAT") {
+    const noise = ["purr", "meow"];
+    return noise[Math.floor(Math.random() * noise.length)];
+  } else if (animal === "DOG") {
+    const noise = ["bark", "woof"];
+    return noise[Math.floor(Math.random() * noise.length)];
+  }
+};
+
 const queueMessage = () => {
-  const event = { category: "DOG", noise: "bark" };
-  const result = stream.write(eventType.toBuffer(event)); // we will use he AVSC buffer to write the streams to the queue
+  const kind = getRandomAnimal();
+  const noise = getRandomNoise(kind);
+  const event = { kind, noise };
+  const result = stream.write(eventType.toBuffer(event)); // Serializing we will use he AVSC buffer to write the streams to the queue
   //const result = stream.write(Buffer.from("data")); // nodejs buffer class is used to handle raw binary data. Each buffer corresponds to some raw memory allocated outside V8. By default it is encoded in utf-8 but  other encodings are supported.
   //   console.log(result); // returns a boolean. if the stream is successful, it will return true.
 

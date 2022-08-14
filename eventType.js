@@ -1,11 +1,13 @@
 const avro = require("avsc");
 
-const type = avro.Type.forSchema({
+module.exports = avro.Type.forSchema({
   type: "record",
+  name: "Pet",
   fields: [
-    { name: "category", type: { type: "enum", symbols: ["CAT", "DOG"] } },
-    { name: "name", type: "string" },
+    {
+      name: "kind",
+      type: { type: "enum", name: "PetKind", symbols: ["CAT", "DOG"] },
+    },
+    { name: "noise", type: "string" },
   ],
 });
-
-export { type };

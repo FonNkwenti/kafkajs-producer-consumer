@@ -1,6 +1,7 @@
 console.log("Consumer...");
 
 const Kafka = require("node-rdkafka");
+const eventType = require("../eventType.js");
 
 // Using the standard API
 const consumer = Kafka.KafkaConsumer(
@@ -21,5 +22,7 @@ consumer
     consumer.consume(); // this will consume the events
   })
   .on("data", (message) => {
-    console.log(`received message: ${message.value.toString()} from stream`);
+    // console.log(`received message: ${message.value.toString()} from stream`);
+    result = eventType.fromBuffer(message.value); // deserializing
+    console.log(`received message: ${result.toString()} from stream`);
   });
